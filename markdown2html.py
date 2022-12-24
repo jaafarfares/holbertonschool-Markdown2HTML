@@ -38,5 +38,6 @@ if __name__ == "__main__":
                     r.write(f"<li>{a}</li>\n")
             if list_is_open == True:
                 r.write("</ul>\n")
+                list_is_open = False
 
     exit(0)
