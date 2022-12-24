@@ -27,8 +27,6 @@ if __name__ == "__main__":
                     a = new_l.rstrip('\n')
                     count_tag = line.count("#")
                     r.write(f"<h{count_tag}>{a}</h{count_tag}>\n")
-                    if list_is_open == True:
-                        nw.write("</ul>\n")
                 if line.startswith("-"):
                     if list_is_open == False:
                         r.write("<ul>\n")
