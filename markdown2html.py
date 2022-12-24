@@ -9,9 +9,7 @@ import os
 
 if __name__ == "__main__":
 
-    n = len(sys.argv)
-
-    if (n < 2):
+    if (len(sys.argv) < 2):
         sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
         exit(1)
 
