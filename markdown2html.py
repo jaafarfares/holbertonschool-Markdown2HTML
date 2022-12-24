@@ -5,8 +5,7 @@ a script markdown2html.py that takes an argument 2 strings
 
 
 import sys
-import os.path
-from os import path
+import os
 
 if __name__ == "__main__":
 
