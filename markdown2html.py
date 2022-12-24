@@ -18,4 +18,11 @@ if __name__ == "__main__":
         sys.stderr.write("Missing " + sys.argv[1] + "\n")
         exit(1)
 
-        exit(0)
+    with open(sys.argv[1], "r") as f:
+        with open(sys.argv[2], "a") as nw:
+            for line in f:
+                    new_l = line.strip("# ")
+                    a = new_l.rstrip('\n')
+                    count_tag = line.count("#")
+                    nw.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
+    exit(0)
