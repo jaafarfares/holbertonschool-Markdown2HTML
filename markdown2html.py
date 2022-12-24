@@ -27,13 +27,13 @@ if __name__ == "__main__":
                     count_tag = line.count("#")
                     r.write(f"<h{count_tag}>{a}</h{count_tag}>\n")
                 if line.startswith("-"):
-                    if list_is_open is False:
+                    if not list_is_open:
                         r.write("<ul>\n")
                         list_is_open = True
                     new_l = line.strip("- ")
                     a = new_l.rstrip('\n')
                     r.write(f"<li>{a}</li>\n")
-            if list_is_open is True:
+            if list_is_open:
                 r.write("</ul>\n")
 
     exit(0)
