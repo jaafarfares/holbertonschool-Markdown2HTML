@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     with open(sys.argv[1], "r") as f:
         with open(sys.argv[2], "a") as r:
-            list_is_open = False
+            list_is_open = 0
             for line in f:
                 if line.startswith("#"):
                     new_l = line.strip("# ")
@@ -27,13 +27,13 @@ if __name__ == "__main__":
                     count_tag = line.count("#")
                     r.write(f"<h{count_tag}>{a}</h{count_tag}>\n")
                 if line.startswith("-"):
-                    if not list_is_open:
+                    if list_is_open == 0:
                         r.write("<ul>\n")
-                        list_is_open = True
+                        list_is_open += 1
                     new_l = line.strip("- ")
                     a = new_l.rstrip('\n')
                     r.write(f"<li>{a}</li>\n")
-            if list_is_open:
+            if list_is_open > 0:
                 r.write("</ul>\n")
 
     exit(0)
