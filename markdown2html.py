@@ -19,10 +19,11 @@ if __name__ == "__main__":
         exit(1)
 
     with open(sys.argv[1], "r") as f:
-        with open(sys.argv[2], "a") as nw:
+        with open(sys.argv[2], "a") as r:
             for line in f:
-                    new_l = line.strip("# ")
-                    a = new_l.rstrip('\n')
-                    count_tag = line.count("#")
-                    nw.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
+                if line.startswith("#"):
+                        new_l = line.strip("# ")
+                        a = new_l.rstrip('\n')
+                        count_tag = line.count("#")
+                        r.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
     exit(0)
