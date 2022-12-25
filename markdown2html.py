@@ -3,7 +3,6 @@
 a script markdown2html.py that takes an argument 2 strings
 """
 
-
 import sys
 import os
 
@@ -24,11 +23,16 @@ if __name__ == "__main__":
 
             for line in f:
                 if line.startswith("#"):
+                    if list_is_open is True:
+                        r.write("</ul>\n")
+                        list_is_open = False
+                    if or_list_is_open is True:
+                        r.write("</ol>\n")
+                        or_list_is_open = False
                     new_l = line.strip("# ")
                     a = new_l.rstrip('\n')
                     count_tag = line.count("#")
                     r.write(f"<h{count_tag}>{a}</h{count_tag}>\n")
-                
                 if line.startswith("-"):
                     if list_is_open is False:
                         r.write("<ul>\n")
@@ -36,8 +40,10 @@ if __name__ == "__main__":
                     new_l = line.strip("- ")
                     a = new_l.rstrip('\n')
                     r.write(f"<li>{a}</li>\n")
-
-
+                else:
+                    if list_is_open is True:
+                        r.write("</ul>\n")
+                        list_is_open = False
                 if line.startswith("*"):
                     if or_list_is_open is False:
                         r.write("<ol>\n")
@@ -45,10 +51,13 @@ if __name__ == "__main__":
                     new_l = line.strip("* ")
                     a = new_l.rstrip('\n')
                     r.write(f"<li>{a}</li>\n")
-
+                else:
+                    if or_list_is_open is True:
+                        r.write("</ol>\n")
+                        or_list_is_open = False
             if or_list_is_open is True:
                 r.write("</ol>\n")
             if list_is_open is True:
                 r.write("</ul>\n")
-
+                list_is_open = False
     exit(0)
